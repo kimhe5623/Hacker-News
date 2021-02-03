@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hacker News</title>
+	<style>
+		.header {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.grid {
+			display: grid;
+			grid-gap: 1rem;
+			grid-auto-rows: 8rem;
+		}
+
+		.item {
+			display: grid;
+			grid-template-rows: repeat(3, 2.6rem);
+			border-bottom: solid #004a42 1px;
+		}
+
+		.title {
+			display: flex;
+			align-items: center;
+			font-size: 1.2rem;
+			font-weight: 600;
+			color: #009687;
+			text-decoration: none;
+		}
+
+		.title:hover {
+			color: #077166;
+		}
+
+		.url {
+			color: #009687;
+			display: flex;
+			align-items: center;
+		}
+    .link {
+			color: #009687;
+    }
+
+		.ads {
+			display: flex;
+			align-items: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<div class="header">
+			<h1 class="text-violet-500">Hacker News</h1>
+			<h2>
+				Order by: <a href="/?order_by=Popular">Popular</a> | <a href="/?order_by=New">New</a>
+			</h2>
+		</div>
+
+
+		<section class="grid">
+			{% for hit in data['hits'] %}
+			<div class="item">
+				<a class="title" href="/{{hit.objectID}}">{{hit.title}}</a>
+				<div class="url">
+					URL >
+					<a class="link" href="{{hit.url}}">{{hit.url}}</a>
+				</div>
+				<div class="ads">{{hit.points}} points | By: {{hit.author}} | {{hit.num_comments}} comments</div>
+			</div>
+			{% endfor %}
+		</section>
+	</div>
+</body>
+
+</html>

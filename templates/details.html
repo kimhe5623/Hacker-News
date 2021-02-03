@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hacker News</title>
+	<style>
+    h1 {
+      margin-bottom: 2.4rem;
+    }
+		.grid {
+			display: grid;
+			grid-gap: 1rem;
+			grid-auto-rows: max-contents;
+		}
+
+		.commentBox {
+			display: grid;
+			grid-template-rows: repeat(3, max-contents);
+			border-bottom: solid #004a42 1px;
+      padding: 1.2rem
+		}
+
+		.author {
+			display: flex;
+      margin-bottom: 1.2rem;
+			align-items: center;
+			font-size: 1.2rem;
+			font-weight: 600;
+			color: #009687;
+			text-decoration: none;
+		}
+
+		.comments {
+			display: flex;
+			align-items: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<h1 class="text-violet-500">{{data.title}} Comments</h1>
+		<section class="grid">
+			{% for comment in data['children'] %}
+			<div class="commentBox">
+				<div class="author">{{comment.author}}</div>
+				<div class="comments">{{comment.text}}</div>
+			</div>
+
+			{% endfor %}
+		</section>
+	</div>
+</body>
+
+</html>
